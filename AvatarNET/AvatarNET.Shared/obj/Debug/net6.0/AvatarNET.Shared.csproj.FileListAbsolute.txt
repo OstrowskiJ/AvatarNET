@@ -1,0 +1,12 @@
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\bin\Debug\net6.0\AvatarNET.Shared.deps.json
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\bin\Debug\net6.0\AvatarNET.Shared.dll
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\bin\Debug\net6.0\AvatarNET.Shared.pdb
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\AvatarNET.Shared.csproj.AssemblyReference.cache
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\AvatarNET.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\AvatarNET.Shared.AssemblyInfoInputs.cache
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\AvatarNET.Shared.AssemblyInfo.cs
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\AvatarNET.Shared.csproj.CoreCompileInputs.cache
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\AvatarNET.Shared.dll
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\refint\AvatarNET.Shared.dll
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\AvatarNET.Shared.pdb
+C:\AvatarNET\AvatarNET\AvatarNET.Shared\obj\Debug\net6.0\ref\AvatarNET.Shared.dll

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Server", "AvatarNET.Server\AvatarNET.Server.csproj", "{633DAFA5-7D58-4523-AB09-4BC4F200FA39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Shared", "AvatarNET.Shared\AvatarNET.Shared.csproj", "{F7B13CB5-2FE7-4778-BB85-E407D80CE336}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{633DAFA5-7D58-4523-AB09-4BC4F200FA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{633DAFA5-7D58-4523-AB09-4BC4F200FA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{633DAFA5-7D58-4523-AB09-4BC4F200FA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{633DAFA5-7D58-4523-AB09-4BC4F200FA39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7B13CB5-2FE7-4778-BB85-E407D80CE336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7B13CB5-2FE7-4778-BB85-E407D80CE336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7B13CB5-2FE7-4778-BB85-E407D80CE336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7B13CB5-2FE7-4778-BB85-E407D80CE336}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
