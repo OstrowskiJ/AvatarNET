@@ -30,18 +30,19 @@ public class PaymentIntentApiController : Controller
     }
     
     [HttpPut]
-    public ActionResult Update(PaymentIntentUpdateRequest request)
+    public async Task<ActionResult> Update(PaymentIntentUpdateRequest request)
     {      
         var customers = new CustomerService();
-        var customer = customers.Update(request.CustomerId, new CustomerUpdateOptions
+        var customer = await customers.UpdateAsync(request.CustomerId, new CustomerUpdateOptions
         {
             Name = request.CustomerName,
             Email = request.CustomerEmail
         });
         
         var paymentIntentService = new PaymentIntentService();
-        var paymentIntent = paymentIntentService.Update(request.PaymentIntentId, new PaymentIntentUpdateOptions
+        var paymentIntent = await paymentIntentService.UpdateAsync(request.PaymentIntentId, new PaymentIntentUpdateOptions
         {
+            Customer = customer.Id,
             ReceiptEmail = request.CustomerEmail
         });
 
