@@ -49,12 +49,16 @@ public class PaymentIntentApiController : Controller
         return Ok(new { customer, paymentIntent });
     }
 
-    private int CalculateOrderAmount(Product product)
+    private long CalculateOrderAmount(Product product)
     {
-        var priceOfOneWord = 1000;
+        //TODO: Calculation by words TBD
+        /*var priceOfOneWord = 1000;
         // \\s+ - whitespace RegEx
         var wordsCount = product.Text!.Split("\\s+").Length;
 
-        return wordsCount * priceOfOneWord;
+        return wordsCount * priceOfOneWord;*/
+        
+        // Multiplied by 100, because Stripe API stores amount in cents.
+        return Convert.ToInt64(product.TotalDue * 100);
     }
 }
