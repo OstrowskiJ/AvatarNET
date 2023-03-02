@@ -1,4 +1,9 @@
+using System.Reflection;
+using AvatarNET.Application.Commands;
+using AvatarNET.Application.Commands.CommandHandlers;
+using AvatarNET.Application.Responses;
 using AvatarNET.Server.Data;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 
@@ -23,6 +28,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source = ./Data/AppDb.db"));
+
+builder.Services.AddMediatR(cfg=>cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
+builder.Services.AddScoped<IRequestHandler<PaymentIntentCreateCommand, PaymentIntentCreateCommandResponse>, PaymentIntentCreateCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<PaymentIntentUpdateCommand, PaymentIntentUpdateCommandResponse>, PaymentIntentUpdateCommandHandler>();
 
 var app = builder.Build();
 

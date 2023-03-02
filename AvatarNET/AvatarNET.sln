@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Server", "AvatarN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Shared", "AvatarNET.Shared\AvatarNET.Shared.csproj", "{F7B13CB5-2FE7-4778-BB85-E407D80CE336}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Application", "AvatarNET.Application\AvatarNET.Application.csproj", "{C671186B-B5E9-4149-835B-64A6835C0BE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Tests", "AvatarNET.Tests\AvatarNET.Tests.csproj", "{5B4E84A4-379B-43C4-89C2-96044A36A0B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{F7B13CB5-2FE7-4778-BB85-E407D80CE336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7B13CB5-2FE7-4778-BB85-E407D80CE336}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7B13CB5-2FE7-4778-BB85-E407D80CE336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C671186B-B5E9-4149-835B-64A6835C0BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C671186B-B5E9-4149-835B-64A6835C0BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C671186B-B5E9-4149-835B-64A6835C0BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C671186B-B5E9-4149-835B-64A6835C0BE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4E84A4-379B-43C4-89C2-96044A36A0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4E84A4-379B-43C4-89C2-96044A36A0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4E84A4-379B-43C4-89C2-96044A36A0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4E84A4-379B-43C4-89C2-96044A36A0B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

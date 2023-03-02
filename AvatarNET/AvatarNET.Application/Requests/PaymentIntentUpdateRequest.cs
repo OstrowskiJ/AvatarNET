@@ -1,7 +1,6 @@
-﻿using Avatar.Shared.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace AvatarNET.Server;
+namespace AvatarNET.Application.Requests;
 
 public class PaymentIntentUpdateRequest
 {

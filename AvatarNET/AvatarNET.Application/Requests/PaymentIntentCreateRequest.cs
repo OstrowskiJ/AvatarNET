@@ -1,9 +1,9 @@
 ﻿using Avatar.Shared.Models;
 using Newtonsoft.Json;
 
-namespace AvatarNET.Server;
+namespace AvatarNET.Application.Requests;
 
-public class PaymentIntentCreateRequest
+public class PaymentIntentCreateRequest 
 {
     [JsonProperty("product")]
     public Product Product { get; set; }
