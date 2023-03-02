@@ -6,18 +6,18 @@ namespace AvatarNET.Server.Controllers;
 
 [Route("create-payment-intent")]
 [ApiController]
-public class PaymentIntentApiController : Controller
+public class PaymentIntentController : Controller
 {
     [HttpPost]
     public ActionResult Create(PaymentIntentCreateRequest request)
     {      
-        var customers = new CustomerService();
-        var customer = customers.Create(new CustomerCreateOptions {Name = ""});
+        var customerService = new CustomerService();
+        var customer = customerService.Create(new CustomerCreateOptions());
         var paymentIntentService = new PaymentIntentService();
         var paymentIntent = paymentIntentService.Create(new PaymentIntentCreateOptions
         {
             Customer = customer.Id,
-            PaymentMethodTypes = new List<string> { "card" },
+            PaymentMethodTypes = new System.Collections.Generic.List<string> { "card" },
             Amount = CalculateOrderAmount(request.Product),
             Currency = "USD"
         });
@@ -32,8 +32,8 @@ public class PaymentIntentApiController : Controller
     [HttpPut]
     public async Task<ActionResult> Update(PaymentIntentUpdateRequest request)
     {      
-        var customers = new CustomerService();
-        var customer = await customers.UpdateAsync(request.CustomerId, new CustomerUpdateOptions
+        var customerService = new CustomerService();
+        var customer = await customerService.UpdateAsync(request.CustomerId, new CustomerUpdateOptions
         {
             Name = request.CustomerName,
             Email = request.CustomerEmail
