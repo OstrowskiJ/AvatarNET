@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Application", "Av
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.Tests", "AvatarNET.Tests\AvatarNET.Tests.csproj", "{5B4E84A4-379B-43C4-89C2-96044A36A0B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvatarNET.React", "AvatarNET.React\AvatarNET.React.csproj", "{942AAD8A-8C75-471B-9B13-927EAD4F85EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{5B4E84A4-379B-43C4-89C2-96044A36A0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B4E84A4-379B-43C4-89C2-96044A36A0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B4E84A4-379B-43C4-89C2-96044A36A0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942AAD8A-8C75-471B-9B13-927EAD4F85EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942AAD8A-8C75-471B-9B13-927EAD4F85EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942AAD8A-8C75-471B-9B13-927EAD4F85EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942AAD8A-8C75-471B-9B13-927EAD4F85EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
