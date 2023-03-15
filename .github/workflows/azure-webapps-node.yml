@@ -22,7 +22,7 @@ jobs:
           node-version: '18.x'
       
       - name: Install Dependencies
-        run: cd AvatarNET\AvatarNET\AvatarNET.React\ClientApp
+        run: cd AvatarNET.React\ClientApp
       
       - name: npm install, build, and test
         run: |
