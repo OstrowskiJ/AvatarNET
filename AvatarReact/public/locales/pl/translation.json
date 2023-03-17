@@ -17,7 +17,7 @@
   "footerContactTitle": "Kontakt",
   "footerContactText": "Masz pytanie? Skontaktuj się z nami.",
   "footerInfo": "Info",
-  "footerInfoPrivacy": "Polityka prywatności",
+  "footerInfoPrivacy": "Politykę prywatności",
   "footerInfoCookies": "Polityka cookies",
   "footerInfoRegulations": "Regulamin",
   "priceSymbol": "$",
@@ -123,6 +123,7 @@
   "sectionOrderAvatar": "Wybrany",
   "sectionOrderNumber": "Liczba słów",
   "sectionOrderVoice": "Głos",
+  "sectionOrderAspectRatio": "Współczynnik proporcji",
 
   "sectionOrderSubtotal": "Suma częściowa",
   "sectionOrderSales": "Podatek od sprzedaży (6.5%)",
@@ -135,7 +136,7 @@
   "lectorVoice2": "Głos lektora 2",
 
     
-  "basicPlan": "need translation",
+  "basicPlan": "Basic",
   "planValidationError": "need translation",
   "typeValidationError": "need translation",
   "lectorVoiceSample1": "need translation",

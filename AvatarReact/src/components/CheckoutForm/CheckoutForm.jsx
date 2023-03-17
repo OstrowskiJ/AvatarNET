@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 
-export const API_URL = "https://localhost:7019";
+export const API_URL = process.env.REACT_APP_API_ENDPOINT
 
 const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   const { t } = useTranslation();
