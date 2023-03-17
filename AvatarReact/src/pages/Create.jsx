@@ -690,7 +690,7 @@ export const Create = () => {
                       data-type={`Sample1`}
                     />
                     <span className="text-sm text-gray-400 peer-checked:text-green-400">
-                    {t("lectorVoiceSample1")}
+                    {t("lectorVoice1")}
                     </span>
                     <svg
                       className="w-5 h-5 peer-checked:fill-green-400"
@@ -714,7 +714,7 @@ export const Create = () => {
                       data-type={`Sample 2`}
                     />
                     <span className="text-sm text-gray-400 peer-checked:text-green-400">
-                    {t("lectorVoiceSample2")}
+                    {t("lectorVoice2")}
                     </span>
                     <svg
                       className="w-5 h-5 peer-checked:fill-green-400"
