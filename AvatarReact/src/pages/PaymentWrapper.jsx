@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const stripePromise = loadStripe("pk_test_51Mh9k3H5RSVwHAKh7BH6FN73hmx0dCQGGwRP0RlciOEOVcjohgL8FZ5pzs2LTLHFtGdcZZYcf8nCGWQSh5gb1SrJ00beq8b5iH");
 
-export const API_URL = "https://localhost:7019";
+export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 
 const PaymentWrapper = () => {
 

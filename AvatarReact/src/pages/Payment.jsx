@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import { Elements, useStripe } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js/pure";
 
-export const API_URL = "https://localhost:7019";
+export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 
 const Payment = ({clientSecret, customerId, paymentIntentId}) => {
   const location = useLocation();

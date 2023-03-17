@@ -24,4 +24,10 @@
       <ProjectReference Include="..\AvatarNET.Shared\AvatarNET.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Data\AppDb.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

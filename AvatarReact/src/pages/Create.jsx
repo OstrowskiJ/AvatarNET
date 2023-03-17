@@ -20,7 +20,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import errorLogo from "../assets/img/alert-triangle.png";
 import axios from "axios";
 
-export const API_URL = "https://localhost:7019";
+export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 export const navbarRootMargin = "-260px 0px 0px 0px";
 let modelsPlanVoiceBackgroundObserver;
 let paymentObserver
