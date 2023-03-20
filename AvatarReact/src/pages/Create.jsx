@@ -479,7 +479,6 @@ export const Create = () => {
           <div className="py-5vh flex items-center gap-x-3.5">
             <IcModel w={35} h={40} />
             <h2 className="text-3xl xl:text-5xl font-semibold ">
-              {" "}
               {t("sectionModelTitle")}
             </h2>
           </div>
@@ -538,6 +537,14 @@ export const Create = () => {
                 </div>
               </label>
             </div>
+            {error && !dataForm.modelGender && (
+                <div role="alert" className="flex items-center gap-x-1 mt-2">
+                  <img src={errorLogo} alt="errorLogo" />
+                  <p className="font-normal text-rose-600">
+                    {t('genderValidationError')}
+                  </p>
+                </div>
+              )}
           </form>
         </div>
         { dataForm.modelGender && <div className="container mt-20">
@@ -552,7 +559,7 @@ export const Create = () => {
               <div role="alert" className="flex items-center gap-x-1 mt-2">
                 <img src={errorLogo} alt="errorLogo" />
                 <p className="font-normal text-rose-600">
-                  
+                  {t("modelTypeValidationError")}
                 </p>
               </div>
             )}
@@ -915,9 +922,8 @@ export const Create = () => {
                 <p>
                   {t("sectionOrderGender")}:{" "}
                   <span>
-                    {dataForm?.modelGender === "man"
-                      ? t("sectionModelMan")
-                      : t("sectionModelWoman")}
+                    { dataForm?.modelGender === "man" ? t("sectionModelMan") : null }
+                    { dataForm?.modelGender === "woman" ? t("sectionModelWoman") : null }
                   </span>
                 </p>
                 <p>

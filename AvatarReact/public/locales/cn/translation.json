@@ -149,6 +149,9 @@
   "summaryValidationError": "need translation",
   "aspectRatioValidationError": "need translation",
   "textValidationError": "need translation",
+  "genderValidationError": "need translation",
+  "modelTypeValidationError": "need translation",
+  "modelValidationError": "need translation",
   
   "aspectRatioType43vertical": "need translation",
   "aspectRatioType43horizontal": "need translation",

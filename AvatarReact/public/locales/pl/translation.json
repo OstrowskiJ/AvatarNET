@@ -152,6 +152,9 @@
   "summaryValidationError": "Proszę wypełnić wymagane pola by przejść do płatności",
   "aspectRatioValidationError": "Proszę wybrać opcję",
   "textValidationError": "Proszę wypełnić to pole",
+  "genderValidationError": "Proszę wybrać płeć",
+  "modelTypeValidationError": "Proszę wybrać typ modela/modelki",
+  "modelValidationError": "Proszę wybrać opcję",
 
   "aspectRatioType43vertical": "4:3 (pionowo)",
   "aspectRatioType43horizontal": "4:3 (poziomo)",
