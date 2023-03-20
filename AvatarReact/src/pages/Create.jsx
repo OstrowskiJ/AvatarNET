@@ -55,7 +55,7 @@ const initialState = {
   voiceLanguage: null,
   voiceType: null,
   background: null,
-  aspectRatio: null
+  aspectRatioType: null
 };
 
 function reducer(state, action) {
@@ -86,8 +86,8 @@ function reducer(state, action) {
       return { ...state, voiceType: action.payload };
     case "background":
       return { ...state, background: action.payload };
-    case "aspectRatio":
-      return { ...state, aspectRatio: action.payload };
+    case "aspectRatioType":
+      return { ...state, aspectRatioType: action.payload };
     default:
       throw new Error();
   }
@@ -202,8 +202,8 @@ export const Create = () => {
         return dispatch({ type: "voiceName", payload: text });
       case "background":
         return dispatch({ type: "background", payload: text });
-      case "aspectRatio":
-        return dispatch({ type: "aspectRatio", payload: text });
+      case "aspectRatioType":
+        return dispatch({ type: "aspectRatioType", payload: text });
       default:
         throw new Error();
     }
@@ -874,7 +874,7 @@ export const Create = () => {
                       {t("aspectRatioType169horizontal")}
                     </span>
                   </label>
-                  {error && dataForm.background && !dataForm.aspectRatio && (
+                  {error && dataForm.background && !dataForm.aspectRatioType && (
                     <div role="alert" className="flex items-center gap-x-1 mt-2">
                       <img src={errorLogo} alt="errorLogo" />
                       <p className="font-normal text-rose-600">
@@ -983,7 +983,7 @@ export const Create = () => {
                     !dataForm.voiceLanguage ||
                     !dataForm.voiceType ||
                     !dataForm.background ||
-                    !dataForm.aspectRatio) && (
+                    !dataForm.aspectRatioType) && (
               <div role="alert" className="flex items-center gap-x-1 mt-2">
                 <img src={errorLogo} alt="errorLogo" />
                 <p className="font-normal text-rose-600">
