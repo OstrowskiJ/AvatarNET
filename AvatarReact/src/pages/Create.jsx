@@ -55,6 +55,7 @@ const initialState = {
   voiceLanguage: null,
   voiceType: null,
   background: null,
+  aspectRatio: null
 };
 
 function reducer(state, action) {
@@ -85,6 +86,8 @@ function reducer(state, action) {
       return { ...state, voiceType: action.payload };
     case "background":
       return { ...state, background: action.payload };
+    case "aspectRatio":
+      return { ...state, aspectRatio: action.payload };
     default:
       throw new Error();
   }
@@ -199,6 +202,8 @@ export const Create = () => {
         return dispatch({ type: "voiceName", payload: text });
       case "background":
         return dispatch({ type: "background", payload: text });
+      case "aspectRatio":
+        return dispatch({ type: "aspectRatio", payload: text });
       default:
         throw new Error();
     }
@@ -277,7 +282,7 @@ export const Create = () => {
         });
       })
       .catch((error) => {
-        setError(error)
+        // setError(error)
       })
 
     }
@@ -592,6 +597,14 @@ export const Create = () => {
               recalculatePriceInForm={recalculatePriceInForm}
             />
           </div>
+          {error && !dataForm.text && (
+            <div role="alert" className="flex items-center gap-x-1 mt-2">
+              <img src={errorLogo} alt="errorLogo" />
+              <p className="font-normal text-rose-600">
+              {t("textValidationError")}
+              </p>
+            </div>
+          )}
         </div>
       </section>
       <section id="voice" ref={voiceRef}>
@@ -669,6 +682,14 @@ export const Create = () => {
                       <path d="M10.5,1.5c0,-0.39782 0.158,-0.77936 0.4393,-1.06066c0.2813,-0.2813 0.6629,-0.43934 1.0607,-0.43934c0.3978,0 0.7794,0.15804 1.0607,0.43934c0.2813,0.28131 0.4393,0.66284 0.4393,1.06066v18c0,0.3978 -0.158,0.7794 -0.4393,1.0607c-0.2813,0.2813 -0.6629,0.4393 -1.0607,0.4393c-0.3978,0 -0.7794,-0.158 -1.0607,-0.4393c-0.2813,-0.2813 -0.4393,-0.6629 -0.4393,-1.0607zM8.25,16.5c0,0.3978 -0.15804,0.7794 -0.43934,1.0607c-0.2813,0.2813 -0.66284,0.4393 -1.06066,0.4393c-0.39782,0 -0.77936,-0.158 -1.06066,-0.4393c-0.2813,-0.2813 -0.43934,-0.6629 -0.43934,-1.0607v-12c0,-0.39782 0.15804,-0.77936 0.43934,-1.06066c0.2813,-0.2813 0.66284,-0.43934 1.06066,-0.43934c0.39782,0 0.77936,0.15804 1.06066,0.43934c0.2813,0.2813 0.43934,0.66284 0.43934,1.06066zM0.43934,14.5607c-0.2813,-0.2813 -0.43934,-0.6629 -0.43934,-1.0607v-6c0,-0.39782 0.15804,-0.77936 0.43934,-1.06066c0.28131,-0.2813 0.66284,-0.43934 1.06066,-0.43934c0.39782,0 0.77936,0.15804 1.06066,0.43934c0.2813,0.2813 0.43934,0.66284 0.43934,1.06066v6c0,0.3978 -0.15804,0.7794 -0.43934,1.0607c-0.2813,0.2813 -0.66284,0.4393 -1.06066,0.4393c-0.39782,0 -0.77936,-0.158 -1.06066,-0.4393zM18.75,16.5c0,0.3978 -0.158,0.7794 -0.4393,1.0607c-0.2813,0.2813 -0.6629,0.4393 -1.0607,0.4393c-0.3978,0 -0.7794,-0.158 -1.0607,-0.4393c-0.2813,-0.2813 -0.4393,-0.6629 -0.4393,-1.0607v-12c0,-0.39782 0.158,-0.77936 0.4393,-1.06066c0.2813,-0.2813 0.6629,-0.43934 1.0607,-0.43934c0.3978,0 0.7794,0.15804 1.0607,0.43934c0.2813,0.2813 0.4393,0.66284 0.4393,1.06066zM23.5607,6.43934c0.2813,0.2813 0.4393,0.66284 0.4393,1.06066v6c0,0.3978 -0.158,0.7794 -0.4393,1.0607c-0.2813,0.2813 -0.6629,0.4393 -1.0607,0.4393c-0.3978,0 -0.7794,-0.158 -1.0607,-0.4393c-0.2813,-0.2813 -0.4393,-0.6629 -0.4393,-1.0607v-6c0,-0.39782 0.158,-0.77936 0.4393,-1.06066c0.2813,-0.2813 0.6629,-0.43934 1.0607,-0.43934c0.3978,0 0.7794,0.15804 1.0607,0.43934z"></path>
                     </svg>
                   </label>
+                  {error && voice && !dataForm.voiceType && (
+                    <div role="alert" className="flex items-center gap-x-1 mt-2">
+                      <img src={errorLogo} alt="errorLogo" />
+                      <p className="font-normal text-rose-600">
+                      {t("languageValidationError")}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
               {voice === t("langEnglish") && (
@@ -722,14 +743,14 @@ export const Create = () => {
                       <path d="M10.5,1.5c0,-0.39782 0.158,-0.77936 0.4393,-1.06066c0.2813,-0.2813 0.6629,-0.43934 1.0607,-0.43934c0.3978,0 0.7794,0.15804 1.0607,0.43934c0.2813,0.28131 0.4393,0.66284 0.4393,1.06066v18c0,0.3978 -0.158,0.7794 -0.4393,1.0607c-0.2813,0.2813 -0.6629,0.4393 -1.0607,0.4393c-0.3978,0 -0.7794,-0.158 -1.0607,-0.4393c-0.2813,-0.2813 -0.4393,-0.6629 -0.4393,-1.0607zM8.25,16.5c0,0.3978 -0.15804,0.7794 -0.43934,1.0607c-0.2813,0.2813 -0.66284,0.4393 -1.06066,0.4393c-0.39782,0 -0.77936,-0.158 -1.06066,-0.4393c-0.2813,-0.2813 -0.43934,-0.6629 -0.43934,-1.0607v-12c0,-0.39782 0.15804,-0.77936 0.43934,-1.06066c0.2813,-0.2813 0.66284,-0.43934 1.06066,-0.43934c0.39782,0 0.77936,0.15804 1.06066,0.43934c0.2813,0.2813 0.43934,0.66284 0.43934,1.06066zM0.43934,14.5607c-0.2813,-0.2813 -0.43934,-0.6629 -0.43934,-1.0607v-6c0,-0.39782 0.15804,-0.77936 0.43934,-1.06066c0.28131,-0.2813 0.66284,-0.43934 1.06066,-0.43934c0.39782,0 0.77936,0.15804 1.06066,0.43934c0.2813,0.2813 0.43934,0.66284 0.43934,1.06066v6c0,0.3978 -0.15804,0.7794 -0.43934,1.0607c-0.2813,0.2813 -0.66284,0.4393 -1.06066,0.4393c-0.39782,0 -0.77936,-0.158 -1.06066,-0.4393zM18.75,16.5c0,0.3978 -0.158,0.7794 -0.4393,1.0607c-0.2813,0.2813 -0.6629,0.4393 -1.0607,0.4393c-0.3978,0 -0.7794,-0.158 -1.0607,-0.4393c-0.2813,-0.2813 -0.4393,-0.6629 -0.4393,-1.0607v-12c0,-0.39782 0.158,-0.77936 0.4393,-1.06066c0.2813,-0.2813 0.6629,-0.43934 1.0607,-0.43934c0.3978,0 0.7794,0.15804 1.0607,0.43934c0.2813,0.2813 0.4393,0.66284 0.4393,1.06066zM23.5607,6.43934c0.2813,0.2813 0.4393,0.66284 0.4393,1.06066v6c0,0.3978 -0.158,0.7794 -0.4393,1.0607c-0.2813,0.2813 -0.6629,0.4393 -1.0607,0.4393c-0.3978,0 -0.7794,-0.158 -1.0607,-0.4393c-0.2813,-0.2813 -0.4393,-0.6629 -0.4393,-1.0607v-6c0,-0.39782 0.158,-0.77936 0.4393,-1.06066c0.2813,-0.2813 0.6629,-0.43934 1.0607,-0.43934c0.3978,0 0.7794,0.15804 1.0607,0.43934z"></path>
                     </svg>
                   </label>
-                </div>
-              )}
-              {error && voice && !dataForm.voiceType && (
-                <div role="alert" className="flex items-center gap-x-1 mt-2">
-                  <img src={errorLogo} alt="errorLogo" />
-                  <p className="font-normal text-rose-600">
-                  {t("languageValidationError")}
-                  </p>
+                  {error && voice && !dataForm.voiceType && (
+                    <div role="alert" className="flex items-center gap-x-1 mt-2">
+                      <img src={errorLogo} alt="errorLogo" />
+                      <p className="font-normal text-rose-600">
+                      {t("languageValidationError")}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -761,7 +782,7 @@ export const Create = () => {
           <div className="max-w-5xl w-full  mt-20 grid-cols-1 gap-y-20 grid md:grid-cols-2 md:gap-x-48">
             <Dropdown
               c="dropdownCustom"
-              moreItem={[t("colorGreen"), t("colorBlue"), t("colorRed")]}
+              moreItem={[t("colorGreen"), t("colorWhite")]}
               type="Background"
               onAdd={onAdd}
               placeHolder={t("placeBg")}
@@ -783,6 +804,7 @@ export const Create = () => {
                       value={`4:3 (vertical)`}
                       id="aspectRatioType43vertical"
                       className="text-green-400 peer focus:ring-green-400"
+                      data-type="43vertical"
                     />
                     <span className="text-sm text-gray-400 peer-checked:text-green-400">
                       {t("aspectRatioType43vertical")}
@@ -801,6 +823,7 @@ export const Create = () => {
                       value={`4:3 (horizontal)`}
                       id="aspectRatioType43horizontal"
                       className="text-green-400 peer focus:ring-green-400"
+                      data-type="43horizontal"
                     />
                     <span className="text-sm text-gray-400 peer-checked:text-green-400">
                       {t("aspectRatioType43horizontal")}
@@ -819,6 +842,7 @@ export const Create = () => {
                       value={`16:9 (vertical)`}
                       id="aspectRatioType169vertical"
                       className="text-green-400 peer focus:ring-green-400"
+                      data-type="169vertical"
                     />
                     <span className="text-sm text-gray-400 peer-checked:text-green-400">
                       {t("aspectRatioType169vertical")}
@@ -837,19 +861,20 @@ export const Create = () => {
                       value={`16:9 (horizontal)`}
                       id="aspectRatioType169horizontal"
                       className="text-green-400 peer focus:ring-green-400"
+                      data-type="169horizontal"
                     />
                     <span className="text-sm text-gray-400 peer-checked:text-green-400">
                       {t("aspectRatioType169horizontal")}
                     </span>
                   </label>
-                </div>
-              )}
-              {error && voice && !dataForm.voiceType && (
-                <div role="alert" className="flex items-center gap-x-1 mt-2">
-                  <img src={errorLogo} alt="errorLogo" />
-                  <p className="font-normal text-rose-600">
-                  {t("languageValidationError")}
-                  </p>
+                  {error && dataForm.background && !dataForm.aspectRatio && (
+                    <div role="alert" className="flex items-center gap-x-1 mt-2">
+                      <img src={errorLogo} alt="errorLogo" />
+                      <p className="font-normal text-rose-600">
+                      {t("aspectRatioValidationError")}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -857,7 +882,7 @@ export const Create = () => {
               <div role="alert" className="flex items-center gap-x-1 mt-2">
                 <img src={errorLogo} alt="errorLogo" />
                 <p className="font-normal text-rose-600">
-                  {t("languageValidationError")}
+                  {t("backgroundValidationError")}
                 </p>
               </div>
             )}
@@ -938,6 +963,29 @@ export const Create = () => {
             </div>
           </div>
         </div>
+        <div class="container">
+        {error && (!dataForm.plan || 
+                    !dataForm.price ||
+                    !dataForm.sale ||
+                    !dataForm.total ||
+                    !dataForm.modelGender ||
+                    !dataForm.modelType ||
+                    !dataForm.modelId ||
+                    !dataForm.modelName ||
+                    !dataForm.text ||
+                    !dataForm.numberWords ||
+                    !dataForm.voiceLanguage ||
+                    !dataForm.voiceType ||
+                    !dataForm.background ||
+                    !dataForm.aspectRatio) && (
+              <div role="alert" className="flex items-center gap-x-1 mt-2">
+                <img src={errorLogo} alt="errorLogo" />
+                <p className="font-normal text-rose-600">
+                  {t("summaryValidationError")}
+                </p>
+              </div>
+            )}
+          </div>
       </section>
     </>
   );

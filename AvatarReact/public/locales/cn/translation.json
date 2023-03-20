@@ -2,8 +2,7 @@
   "langPolish": "Polish",
   "langEnglish": "English",
   "colorGreen": "绿色的",
-  "colorBlue": "蓝色的",
-  "colorRed": "红色的",
+  "colorWhite": "need translation",
   "realActor": "need translation",
   "virtualAvatar": "need translation",
   "placeModelType": "need translation",
@@ -146,7 +145,10 @@
   "checkoutFormCreditOrDebit": "need translation",
   "checkoutFormSubmit": "need translation",
   "checkoutFormName": "need translation",
-
+  "backgroundValidationError": "need translation",
+  "summaryValidationError": "need translation",
+  "aspectRatioValidationError": "need translation",
+  "textValidationError": "need translation",
   
   "aspectRatioType43vertical": "need translation",
   "aspectRatioType43horizontal": "need translation",

@@ -34,9 +34,7 @@ function Home() {
                 <Link
                   to="#"
                   className="button relative button inline-flex px-8 py-2 lg:px-16 lg:py-3 rounded-full text-white font-bold lg:text-base text-sm  shadow-md  hover:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out">
-                  {videoLang === null || videoLang === "pl"
-                    ? "Odtwórz wideo"
-                    : "Play Video"}
+                  {t("sectionHeroPlayVideo")}
                 </Link>
               </div>
             </div>
