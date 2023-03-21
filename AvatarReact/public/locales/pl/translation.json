@@ -155,6 +155,12 @@
   "genderValidationError": "Proszę wybrać płeć",
   "modelTypeValidationError": "Proszę wybrać typ modela/modelki",
   "modelValidationError": "Proszę wybrać opcję",
+  "processingOrderTitle": "Procesuje płatność...",
+  "processingOrderSubTitle": "Dziękujemy za twoją płatność. Proszę czekać, procesujemy twoją płatność.",
+  "paymentReceivedTitle": "Otrzymano płatność!",
+  "paymentReceivedSubTitle1": "Dziękujemy za zamówienie.",
+  "paymentReceivedSubTitle2": "Wkrótce otrzymasz potwierdzenie emailem.",
+  "finishPaymentProcess": "Zakończ proces płatności",
 
   "aspectRatioType43vertical": "4:3 (pionowo)",
   "aspectRatioType43horizontal": "4:3 (poziomo)",

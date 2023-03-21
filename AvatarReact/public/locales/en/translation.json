@@ -152,6 +152,12 @@
   "genderValidationError": "Please click button to select gender",
   "modelTypeValidationError": "Please choose type of model",
   "modelValidationError": "Please select an option",
+  "processingOrderTitle": "Processing order...",
+  "processingOrderSubTitle": "Thank you for your order. Please wait while we process your payment.",
+  "paymentReceivedTitle": "Payment received!",
+  "paymentReceivedSubTitle1": "Thank you for your order.",
+  "paymentReceivedSubTitle2": "You will receive payment confirmation shortly.",
+  "finishPaymentProcess": "Finish payment process",
 
   "aspectRatioType43vertical": "4:3 (vertical)",
   "aspectRatioType43horizontal": "4:3 (horizontal)",

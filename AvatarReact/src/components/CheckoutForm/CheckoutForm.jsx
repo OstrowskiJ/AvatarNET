@@ -5,18 +5,22 @@ import {
   useStripe
 } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+import { Link } from "react-router-dom";
+import SuccessfulIcon from "../../assets/img/success-payment-icon.svg";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT
 
 const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   const { t } = useTranslation();
+  const [paymentState, setPaymentState] = useState("completed");
+  let cardElement = null;
 
   const [error, setError] = useState(null);
   const [name, setName] = useState("");
   
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -31,6 +35,11 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   };
 
   const handleSubmit = async (e) => {
+    if (!cardElement)
+    {
+      cardElement = elements.getElement("card");
+    }
+    
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -38,8 +47,6 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
-    setIsLoading(true);
 
     fetch(`${API_URL}/create-payment-intent`, {
       method: "PUT",
@@ -51,15 +58,23 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
         paymentIntentId: paymentIntentId
       }),
     }).then(async () => {
-      const { error } = await stripe.confirmCardPayment(clientSecret, {
+      
+      cardElement = elements.getElement("card");
+      setPaymentState("loading")
+
+      return await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: elements.getElement(CardElement),
+          card: cardElement,
           billing_details: {
             name: name,
           },
         },
         receipt_email: email,
         return_url: 'http://localhost:3000'
+      }).then(async () => {
+        setPaymentState("completed")
+      }).catch(async (error2) => {
+        console.log("dowalony błąd " + error2)
       })
   
       // This point will only be reached if there is an immediate error when
@@ -72,8 +87,10 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
       } else {
         setMessage("An unexpected error occurred.");
       }
-  
-      setIsLoading(false);
+    }).then(async () => {
+      setPaymentState("completed")
+    }).catch(async (error3) => {
+      console.log("dowalony błąd " + error3)
     })
   };
 
@@ -83,48 +100,105 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="stripe-form">
-      <div className="form-row">
-        <label>    
-          {t("checkoutFormName")}
-          <input
-            name="name"
-            type="text"
-            placeholder="Jane Doe"
-            required
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
-        </label>
-        <label htmlFor="email">
-          {t("checkoutFormEmailAddress")}
-          <input
-            className="form-input"
-            id="email"
-            name="name"
-            type="email"
-            placeholder="jenny.rosen@example.com"
-            required
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </label>
-      </div>
-      <div className="form-row">
-        <label htmlFor="card-element">{t("checkoutFormCreditOrDebit")}</label>
-        <CardElement id="card-element" onChange={handleChange} />
-        <div className="card-errors" role="alert">
-          {error}
+    <div>
+    { paymentState === "init" &&
+      <div>
+      <form onSubmit={handleSubmit} className="stripe-form">
+        <div className="form-row">
+          <label>    
+            {t("checkoutFormName")}
+            <input
+              name="name"
+              type="text"
+              placeholder="Jane Doe"
+              required
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          </label>
+          <label htmlFor="email">
+            {t("checkoutFormEmailAddress")}
+            <input
+              className="form-input"
+              id="email"
+              name="name"
+              type="email"
+              placeholder="jenny.rosen@example.com"
+              required
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+          </label>
         </div>
+        <div className="form-row">
+          <label htmlFor="card-element">{t("checkoutFormCreditOrDebit")}</label>
+          <CardElement id="card-element" onChange={handleChange} />
+          <div className="card-errors" role="alert">
+            {error}
+          </div>
+        </div>
+        <button type="submit" className="submit-btn">
+          {t("checkoutFormSubmit")}
+        </button>
+        {message && <div id="payment-message">{message}</div>}
+      </form>
+    </div>
+    }
+      { paymentState === "loading" && 
+        <div className="text-center align-middle">
+            <h2 className="text-xl lg:text-2xl xl:text-3xl my-5">
+              {t("processingOrderTitle")}
+            </h2>
+            <h3 className="text-xl my-5">
+              {t("processingOrderSubTitle")}
+            </h3>
+            <ClipLoader
+              loading={true}
+              size={40}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+        </div>
+        }
+        { paymentState === "completed" &&         
+        <div className="text-center align-middle">
+            <h2 className="text-xl lg:text-2xl xl:text-3xl my-5">
+            <img
+                src={SuccessfulIcon}
+                alt=""
+                className="w-[40px] mx-3 inline-block"
+              />
+              {t("paymentReceivedTitle")}
+            </h2>
+            <h3 className="text-xl my-5">
+              {t("paymentReceivedSubTitle1")} <br />
+              {t("paymentReceivedSubTitle2")}
+            </h3>
+            <Link
+                className="relative button inline-flex px-8 py-2 lg:px-16 lg:py-3 rounded-full text-white font-bold lg:text-base text-sm  shadow-md " 
+                to={"/"}>
+                {t("finishPaymentProcess")}
+                <span className="button-icon">
+                  <svg
+                    className="w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      stroke="#fff"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              </Link>
+        </div>
+        }
       </div>
-      <button type="submit" className="submit-btn">
-        {t("checkoutFormSubmit")}
-      </button>
-      {message && <div id="payment-message">{message}</div>}
-    </form>
   );
 };
 export default CheckoutForm;

@@ -109,7 +109,7 @@ const Payment = ({clientSecret, customerId, paymentIntentId}) => {
         </div>
         <div className="payment-details"></div>
       </div>
-      <div className="flex-1">  
+      <div className="flex-1 flex flex-col justify-center">  
         <CheckoutForm clientSecret = { clientSecret } customerId = { customerId } paymentIntentId = { paymentIntentId }/>
       </div>
     </div>

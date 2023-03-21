@@ -152,6 +152,11 @@
   "genderValidationError": "need translation",
   "modelTypeValidationError": "need translation",
   "modelValidationError": "need translation",
+  "processingOrderTitle": "need translation",
+  "paymentReceivedTitle": "need translation",  
+  "paymentReceivedSubTitle1": "need translation",
+  "paymentReceivedSubTitle2": "need translation",
+  "finishPaymentProcess": "need translation",
   
   "aspectRatioType43vertical": "need translation",
   "aspectRatioType43horizontal": "need translation",

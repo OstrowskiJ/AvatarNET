@@ -969,7 +969,7 @@ export const Create = () => {
             </div>
           </div>
         </div>
-        <div class="container">
+        <div className="container">
         {error && (!dataForm.plan || 
                     !dataForm.price ||
                     !dataForm.sale ||
