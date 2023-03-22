@@ -98,7 +98,7 @@ export const contactUs = createAsyncThunk(
       };
 
       await axios.post(
-        "http://178.62.80.241:9000/main/contact-us/",
+        "https://formspree.io/f/xnqybzvg",
         { name, email, text },
         config
       );
