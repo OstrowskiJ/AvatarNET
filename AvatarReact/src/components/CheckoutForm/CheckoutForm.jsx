@@ -9,12 +9,13 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import SuccessfulIcon from "../../assets/img/success-payment-icon.svg";
 import FailedIcon from "../../assets/img/failed-payment-icon.svg";
+import PaymentState from "../../utils/enums/PaymentState.ts";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT
 
 const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   const { t } = useTranslation();
-  const [paymentState, setPaymentState] = useState("failed");
+  const [paymentState, setPaymentState] = useState(PaymentState.Init);
   let cardElement = null;
 
   const [error, setError] = useState(null);
@@ -65,7 +66,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
     }).then(async () => {
       
       cardElement = elements.getElement("card");
-      setPaymentState("loading")
+      setPaymentState(PaymentState.Loading)
 
       return await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -77,7 +78,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
         receipt_email: email,
         return_url: 'http://localhost:3000'
       }).then(async () => {
-        setPaymentState("completed")
+        setPaymentState(PaymentState.Completed)
       }).catch(async (error2) => {
         console.log("dowalony błąd " + error2)
       })
@@ -93,7 +94,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
         setMessage("An unexpected error occurred.");
       }
     }).then(async () => {
-      setPaymentState("completed")
+      setPaymentState(PaymentState.Completed)
     }).catch(async (error3) => {
       console.log("dowalony błąd " + error3)
     })
@@ -106,7 +107,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
 
   return (
     <div>
-    { paymentState === "init" &&
+    { paymentState === PaymentState.Init &&
       <div>
       <form onSubmit={handleSubmit} className="stripe-form">
         <div className="form-row">
@@ -152,7 +153,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
       </form>
     </div>
     }
-      { paymentState === "loading" && 
+      { paymentState === PaymentState.Loading && 
         <div className="text-center align-middle">
             <h2 className="text-xl lg:text-2xl xl:text-3xl my-5">
               {t("processingOrderTitle")}
@@ -168,7 +169,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
             />
         </div>
         }
-        { paymentState === "completed" &&         
+        { paymentState === PaymentState.Completed &&         
         <div className="text-center align-middle">
             <h2 className="text-xl lg:text-2xl xl:text-3xl my-5">
             <img
@@ -203,7 +204,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
               </Link>
         </div>
         }
-        { paymentState === "failed" &&         
+        { paymentState === PaymentState.Failed &&         
           <div className="text-center align-middle">
             <h2 className="payment-title text-xl lg:text-2xl xl:text-3xl my-5">
             <img
