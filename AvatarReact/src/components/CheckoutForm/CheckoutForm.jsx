@@ -8,12 +8,13 @@ import React, { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import SuccessfulIcon from "../../assets/img/success-payment-icon.svg";
+import FailedIcon from "../../assets/img/failed-payment-icon.svg";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT
 
 const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   const { t } = useTranslation();
-  const [paymentState, setPaymentState] = useState("completed");
+  const [paymentState, setPaymentState] = useState("failed");
   let cardElement = null;
 
   const [error, setError] = useState(null);
@@ -24,6 +25,10 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
 
   const stripe = useStripe();
   const elements = useElements();
+
+  const changePaymentState = (state) => {
+    setPaymentState(state);
+  } 
 
   // Handle real-time validation errors from the card Element.
   const handleChange = (event) => {
@@ -197,6 +202,40 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
                 </span>
               </Link>
         </div>
+        }
+        { paymentState === "failed" &&         
+          <div className="text-center align-middle">
+            <h2 className="payment-title text-xl lg:text-2xl xl:text-3xl my-5">
+            <img
+                src={FailedIcon}
+                alt=""
+                className="w-[40px] mx-3 inline-block"
+              />
+              {t("failedPaymentProcessTitle")}
+            </h2>
+            <h3 className="text-xl my-5">
+              {t("failedPaymentProcessSubTitle")}
+            </h3>
+            <button
+                className="relative button inline-flex px-8 py-2 lg:px-16 lg:py-3 rounded-full text-white font-bold lg:text-base text-sm  shadow-md " 
+                onClick={() => changePaymentState("init")}>
+                {t("tryAgainButtonTitle")}
+                <span className="button-icon">
+                  <svg
+                    className="w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      stroke="#fff"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              </button>
+          </div>
         }
       </div>
   );

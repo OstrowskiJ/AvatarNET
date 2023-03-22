@@ -158,6 +158,9 @@
   "paymentReceivedSubTitle1": "Thank you for your order.",
   "paymentReceivedSubTitle2": "You will receive payment confirmation shortly.",
   "finishPaymentProcess": "Finish payment process",
+  "failedPaymentProcessTitle": "Payment failed!",
+  "failedPaymentProcessSubTitle": "Payment failed, please try again",
+  "tryAgainButtonTitle": "Try again",
 
   "aspectRatioType43vertical": "4:3 (vertical)",
   "aspectRatioType43horizontal": "4:3 (horizontal)",

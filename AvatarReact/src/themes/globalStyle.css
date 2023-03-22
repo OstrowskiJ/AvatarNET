@@ -465,3 +465,7 @@ h3.aspectRatioTitle {
   line-height: 32px;
   color: #404040;
 }
+
+.payment-title {
+  margin-right: 20px;
+}

@@ -161,6 +161,9 @@
   "paymentReceivedSubTitle1": "Dziękujemy za zamówienie.",
   "paymentReceivedSubTitle2": "Wkrótce otrzymasz potwierdzenie emailem.",
   "finishPaymentProcess": "Zakończ proces płatności",
+  "failedPaymentProcessTitle": "Płatność nie powiodła się!",
+  "failedPaymentProcessSubTitle": "Płatność nie powiodła się, spróbuj ponownie",
+  "tryAgainButtonTitle": "Spróbuj ponownie",
 
   "aspectRatioType43vertical": "4:3 (pionowo)",
   "aspectRatioType43horizontal": "4:3 (poziomo)",
