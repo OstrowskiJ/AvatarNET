@@ -2490,3 +2490,8 @@ ul.table-list span svg {
     left: 80px !important;
   }
 }
+
+.eu-flag {
+  width: 255px;
+  transform: scale(1) !important;
+}

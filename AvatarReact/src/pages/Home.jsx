@@ -13,9 +13,14 @@ import { useState } from "react";
 import { Contact } from "../components/Contact/Contact";
 import { Plans } from "../components/Plans/Plans";
 import { Link } from "react-router-dom";
+import EuLogoEn from "../assets/img/eu_en.png";
+import EuLogoPl from "../assets/img/eu_pl.png";
+
 
 function Home() {
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
   const [tabs, setTabs] = useState("1");
   const [videoLang, setVideoLang] = useState(null);
 
@@ -43,6 +48,9 @@ function Home() {
                 {t("sectionHeroTitle")}
               </h2>
               <p>{t("sectionHeroSub")}</p>
+              {lang === "pl" ? 
+              <img class="eu-flag" src={EuLogoPl}></img> :
+              <img class="eu-flag" src={EuLogoEn}></img> }
             </div>
           </div>
           <div className="absolute right-4 top-16 md:right-8 xl:right-0">
