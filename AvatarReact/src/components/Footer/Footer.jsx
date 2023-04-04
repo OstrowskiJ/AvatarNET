@@ -61,7 +61,7 @@ export default function Footer() {
             </div>
             <div className="space-y-4">
               <p className="text-xl text-black lg:text-2xl">Powered by</p>
-              <a href="https://castingstudio.com/" className="inline-block">
+              <a href="https://jolly-beach-0ec849003.1.azurestaticapps.net/" className="inline-block">
                 <img
                   src={CastingImg}
                   alt="casting studio"

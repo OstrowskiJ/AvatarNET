@@ -413,7 +413,7 @@ function Home() {
                 {t("sectionAboutText")}
               </p>
               <p className="text-2xl text-gray-500 xl:text-3xl">
-                {t("sectionAboutLink")} <a href="https://castingstudio.com/">castingstudio.com</a>
+                {t("sectionAboutLink")} <a href="https://jolly-beach-0ec849003.1.azurestaticapps.net/">castingstudio.com</a>
               </p>
             </div>
           </div>

@@ -54,6 +54,7 @@
 
   "sectionAboutTitle": "O nas",
   "sectionAboutText": "Jesteśmy właścicielami Casting Studio - jednego z największych portali castingowych w Europie. Dzięki wieloletniej pracy w branży modelingowej doskonale poznaliśmy potrzeby naszych klientów. Nadszedł czas, aby pokazać Wam technologię, która na nowo zdefiniuje proces produkcji filmowej z udziałem aktorów.",
+  "sectionAboutLink": "Odwiedź stronę ",
 
   "sectionPlansBasicTitle": "Oferta Basic",
   "sectionPlansBasicPrice": "$0.25",
@@ -131,8 +132,8 @@
   "sectionOrderTotal": "Total to pay:",
   "sectionOrderCheckout": "Przejdź do płatności",
   "optionBackground": "Tło",
-  "lectorVoice1": "Głos lektora 1",
-  "lectorVoice2": "Głos lektora 2",
+  "lectorVoice1": "Lektor Głos 1",
+  "lectorVoice2": "Lektor Głos 2",
 
     
   "basicPlan": "Basic",
@@ -141,9 +142,9 @@
   "lectorVoiceSample1": "need translation",
   "lectorVoiceSample2": "need translation",
   "languageValidationError": "Proszę wybrać język z listy",
-  "contactFormValidationError": "need translation",
-  "contactFormValidationError2": "need translation",
-  "contactFormValidationError3": "need translation",
+  "contactFormValidationError": "Proszę wypełnić wymagane pola",
+  "contactFormValidationError2": "Proszę wypełnić wymagane pola aby wysłać formularz",
+  "contactFormValidationError3": "Proszę wybrać opcję",
   "checkoutFormEmailAddress": "need translation",
   "checkoutFormCreditOrDebit": "need translation",
   "checkoutFormSubmit": "need translation",

@@ -2495,3 +2495,7 @@ ul.table-list span svg {
   width: 255px;
   transform: scale(1) !important;
 }
+
+.table-list span li {
+  word-break: break-word;
+}
