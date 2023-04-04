@@ -4,7 +4,7 @@ import {
   useElements,
   useStripe
 } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import SuccessfulIcon from "../../assets/img/success-payment-icon.svg";
@@ -23,9 +23,17 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState(null);
-
+  const [stripeReady, setStripeReady] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+
+  useEffect(() => {
+    if (stripe && elements) {
+      setStripeReady(true);
+    } else {
+      setStripeReady(false);
+    }
+  }, [stripe, elements]);
 
   const changePaymentState = (state) => {
     setPaymentState(state);
@@ -83,19 +91,21 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
               name: name,
             },
           },
-          receipt_email: email,
-          return_url: 'http://localhost:3000'
+          receipt_email: email
         })
-          .then(() => {
+          .then((result) => {
+            if (result.error) {
+                console.log(result.error);
+            }
+
             setPaymentState(PaymentState.Completed);
             resolve();
           })
           .catch((error) => {
-            console.log("dowalony błąd " + error);
+            console.log("Error during payment process: " + error);
             reject(error);
           });
       });
-    
     } catch (error) {
       console.log("Error during payment process: " + error);
     }
@@ -108,8 +118,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
 
   return (
     <div>
-    { paymentState === PaymentState.Init &&
-      <div>
+      <div style={{ display: paymentState === PaymentState.Init ? 'block' : 'none' }}>
       <form onSubmit={handleSubmit} className="stripe-form">
         <div className="form-row">
           <label>    
@@ -147,13 +156,12 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
             {error}
           </div>
         </div>
-        <button type="submit" className="submit-btn">
+        <button disabled={!stripeReady} type="submit" className="submit-btn">
           {t("checkoutFormSubmit")}
         </button>
         {message && <div id="payment-message">{message}</div>}
       </form>
     </div>
-    }
       { paymentState === PaymentState.Loading && 
         <div className="text-center align-middle">
             <h2 className="text-xl lg:text-2xl xl:text-3xl my-5">
