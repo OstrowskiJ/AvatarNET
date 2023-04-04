@@ -421,9 +421,9 @@ export const Create = () => {
         </div>
       </div>
       <div class="container mt-20 relative ">
-        {lang === "pl" ? 
-                <img class="eu-flag" style="margin-left: auto;" src={EuLogoPl}></img> :
-                <img class="eu-flag" style="margin-left: auto;" src={EuLogoEn}></img> }
+        {lang === "pl" ?
+                <img class="eu-flag" style={{ marginLeft: 'auto', marginRight: '32px' }} src={EuLogoPl}></img> :
+                <img class="eu-flag" style={{ marginLeft: 'auto', marginRight: '32px' }} src={EuLogoEn}></img> }
       </div>
       <section className="mt-20" id="test">
         <h2 className="text-3xl xl:text-5xl font-semibold text-center">
