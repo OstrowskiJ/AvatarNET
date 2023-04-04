@@ -19,6 +19,8 @@ import paymentIcon from "../assets/img/pay_met_icon.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import errorLogo from "../assets/img/alert-triangle.png";
 import axios from "axios";
+import EuLogoEn from "../assets/img/eu_en.png";
+import EuLogoPl from "../assets/img/eu_pl.png";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 export const navbarRootMargin = "-260px 0px 0px 0px";
@@ -104,6 +106,8 @@ export const Create = () => {
   const [error, setError] = useState(false);
 
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
 
   const planRef = useRef(null);
   const modelsRef = useRef(null);
@@ -415,6 +419,11 @@ export const Create = () => {
             </span>
           </AnchorLink>
         </div>
+      </div>
+      <div class="container mt-20 relative ">
+        {lang === "pl" ? 
+                <img class="eu-flag" style="margin-left: auto;" src={EuLogoPl}></img> :
+                <img class="eu-flag" style="margin-left: auto;" src={EuLogoEn}></img> }
       </div>
       <section className="mt-20" id="test">
         <h2 className="text-3xl xl:text-5xl font-semibold text-center">
