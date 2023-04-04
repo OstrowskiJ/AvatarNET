@@ -10,8 +10,6 @@ export const Dropdown = ({
   onAdd = () => {},
   placeHolder = ""
 }) => {
-  console.log("placeHolder :", placeHolder);
-
   let item;
   if (type === "Language") {
     item = moreItem[0];

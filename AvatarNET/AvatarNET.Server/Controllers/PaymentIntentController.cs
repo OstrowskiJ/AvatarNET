@@ -1,7 +1,7 @@
 ﻿using AvatarNET.Application.Commands;
+using AvatarNET.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Product = Avatar.Shared.Models.Product;
 
 namespace AvatarNET.Server.Controllers;
 
@@ -27,6 +27,6 @@ public class PaymentIntentController : Controller
     public async Task<ActionResult> Update(PaymentIntentUpdateCommand command)
     {      
         var response = await _mediator.Send(command);
-        return Ok(response);
+        return Json(response);
     }
 }

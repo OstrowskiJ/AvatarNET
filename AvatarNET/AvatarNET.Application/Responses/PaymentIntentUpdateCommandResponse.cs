@@ -4,12 +4,16 @@ namespace AvatarNET.Application.Responses;
 
 public class PaymentIntentUpdateCommandResponse
 {
-    public PaymentIntentUpdateCommandResponse(Customer customer, PaymentIntent paymentIntent)
+    public PaymentIntentUpdateCommandResponse(Customer customer, PaymentIntent paymentIntent, string clientSecret)
     {
         Customer = customer;
         PaymentIntent = paymentIntent;
+        ClientSecret = clientSecret;
     }
 
-    private Customer Customer { get; set; }
-    private PaymentIntent PaymentIntent { get; set; }
+    public Customer Customer { get; set; }
+    
+    public PaymentIntent PaymentIntent { get; set; }
+
+    public string ClientSecret { get; set; }
 }

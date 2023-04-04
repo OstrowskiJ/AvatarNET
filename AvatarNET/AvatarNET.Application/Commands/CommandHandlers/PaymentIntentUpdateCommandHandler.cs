@@ -1,7 +1,6 @@
 ﻿using AvatarNET.Application.Responses;
 using MediatR;
 using Stripe;
-using Product = Avatar.Shared.Models.Product;
 
 namespace AvatarNET.Application.Commands.CommandHandlers;
 
@@ -23,6 +22,6 @@ public class PaymentIntentUpdateCommandHandler : IRequestHandler<PaymentIntentUp
             ReceiptEmail = request.CustomerEmail
         }, cancellationToken: cancellationToken);
 
-        return new PaymentIntentUpdateCommandResponse(customer, paymentIntent);
+        return new PaymentIntentUpdateCommandResponse(customer, paymentIntent, paymentIntent.ClientSecret);
     }
 }

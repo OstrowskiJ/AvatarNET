@@ -53,52 +53,53 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
-    fetch(`${API_URL}/create-payment-intent`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        customerName: name, 
-        customerEmail: email, 
-        customerId: customerId,
-        paymentIntentId: paymentIntentId
-      }),
-    }).then(async () => {
-      
-      cardElement = elements.getElement("card");
-      setPaymentState(PaymentState.Loading)
-
-      return await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: name,
-          },
-        },
-        receipt_email: email,
-        return_url: 'http://localhost:3000'
-      }).then(async () => {
-        setPaymentState(PaymentState.Completed)
-      }).catch(async (error2) => {
-        console.log("dowalony błąd " + error2)
-      })
-  
-      // This point will only be reached if there is an immediate error when
-      // confirming the payment. Otherwise, your customer will be redirected to
-      // your `return_url`. For some payment methods like iDEAL, your customer will
-      // be redirected to an intermediate site first to authorize the payment, then
-      // redirected to the `return_url`.
-      if (error.type === "card_error" || error.type === "validation_error") {
-        setMessage(error.message);
-      } else {
-        setMessage("An unexpected error occurred.");
+    
+    try {
+      const response = await fetch(`${API_URL}/create-payment-intent`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          customerName: name, 
+          customerEmail: email, 
+          customerId: customerId,
+          paymentIntentId: paymentIntentId
+        }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Failed to create payment intent');
       }
-    }).then(async () => {
-      setPaymentState(PaymentState.Completed)
-    }).catch(async (error3) => {
-      console.log("dowalony błąd " + error3)
-    })
-  };
+    
+      const { clientSecret } = await response.json();
+    
+      cardElement = elements.getElement("card");
+      setPaymentState(PaymentState.Loading);
+    
+      await new Promise((resolve, reject) => {
+        stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: name,
+            },
+          },
+          receipt_email: email,
+          return_url: 'http://localhost:3000'
+        })
+          .then(() => {
+            setPaymentState(PaymentState.Completed);
+            resolve();
+          })
+          .catch((error) => {
+            console.log("dowalony błąd " + error);
+            reject(error);
+          });
+      });
+    
+    } catch (error) {
+      console.log("Error during payment process: " + error);
+    }
+ };
 
   const options = {
     // passing the client secret obtained from the server

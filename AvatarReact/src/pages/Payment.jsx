@@ -6,16 +6,13 @@ import { IcArRight, IcPlan } from "../components/Icons/Icons";
 import { useNavigate } from "react-router-dom";
 import CheckoutForm from "../components/CheckoutForm/CheckoutForm";
 import { useLocation } from "react-router-dom";
-import { Elements, useStripe } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js/pure";
+import { useStripe } from "@stripe/react-stripe-js";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 
 const Payment = ({clientSecret, customerId, paymentIntentId}) => {
   const location = useLocation();
   const { subtotal, salesTax, totalDue } = location.state;
-
-  const stripe = useStripe();
 
   console.log(location.state);
   const { productState } = location.state;
