@@ -49,8 +49,8 @@ function Home() {
               </h2>
               <p>{t("sectionHeroSub")}</p>
               {lang === "pl" ? 
-              <img class="eu-flag" src={EuLogoPl}></img> :
-              <img class="eu-flag" src={EuLogoEn}></img> }
+              <img className="eu-flag" src={EuLogoPl}></img> :
+              <img className="eu-flag" src={EuLogoEn}></img> }
             </div>
           </div>
           <div className="absolute right-4 top-16 md:right-8 xl:right-0">

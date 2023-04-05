@@ -165,5 +165,9 @@
   "aspectRatioType43vertical": "4:3 (vertical)",
   "aspectRatioType43horizontal": "4:3 (horizontal)",
   "aspectRatioType169vertical": "16:9 (vertical)",
-  "aspectRatioType169horizontal": "16:9 (horizontal)"
+  "aspectRatioType169horizontal": "16:9 (horizontal)",
+
+  "loadingContactForm": "Sending form...",
+  "successContactForm": "Your form has been submitted!",
+  "backButtonContactForm": "Go back"
 }

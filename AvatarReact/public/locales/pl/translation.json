@@ -169,5 +169,9 @@
   "aspectRatioType43vertical": "4:3 (pionowo)",
   "aspectRatioType43horizontal": "4:3 (poziomo)",
   "aspectRatioType169vertical": "16:9 (pionowo)",
-  "aspectRatioType169horizontal": "16:9 (poziomo)"
+  "aspectRatioType169horizontal": "16:9 (poziomo)",
+
+  "loadingContactForm": "Wysyłam formularz...",
+  "successContactForm": "Twój formularz został wysłany!",
+  "backButtonContactForm": "Wróć"
 }

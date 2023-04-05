@@ -2500,7 +2500,6 @@ ul.table-list span svg {
   }
 }
 
-
 .eu-flag {
   width: 255px;
   transform: scale(1) !important;
@@ -2508,4 +2507,26 @@ ul.table-list span svg {
 
 .table-list span li {
   word-break: break-word;
+}
+
+.contact-form-loading, 
+.contact-form-success {
+  height: 425px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contact-form-info-title {
+  margin-bottom: 32px;
+}
+
+.contact-form-success button {
+  margin-top: 32px;
+}
+
+.contact-form-success img {
+  margin-bottom: 64px;
 }

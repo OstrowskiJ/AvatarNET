@@ -86,28 +86,3 @@ export const getUserDetails = createAsyncThunk(
     }
   }
 );
-
-export const contactUs = createAsyncThunk(
-  "contactUs",
-  async ({ name, email, text }, { rejectWithValue }) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      await axios.post(
-        "https://formspree.io/f/xnqybzvg",
-        { name, email, text },
-        config
-      );
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
-    }
-  }
-);

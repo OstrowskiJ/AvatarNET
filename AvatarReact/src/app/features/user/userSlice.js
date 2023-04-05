@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getUserDetails,
   registerUser,
-  userLogin,
-  contactUs,
+  userLogin
 } from "./userActions";
 import TokenService from "../../../services/token.service";
 // initialize userToken from local storage
@@ -69,18 +68,6 @@ const userSlice = createSlice({
     },
     [getUserDetails.rejected]: (state, { payload }) => {
       state.loading = false;
-    },
-    //contactUs
-    [contactUs.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [contactUs.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-    },
-    [contactUs.rejected]: (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
     },
   },
 });

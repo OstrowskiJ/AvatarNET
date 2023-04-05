@@ -164,5 +164,9 @@
   "aspectRatioType43vertical": "need translation",
   "aspectRatioType43horizontal": "need translation",
   "aspectRatioType169vertical": "need translation",
-  "aspectRatioType169horizontal": "need translation"
+  "aspectRatioType169horizontal": "need translation",
+
+  "loadingContactForm": "need translation",
+  "successContactForm": "need translation",
+  "backButtonContactForm": "need translation"
 }
