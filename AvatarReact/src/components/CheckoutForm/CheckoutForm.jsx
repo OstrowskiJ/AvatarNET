@@ -49,12 +49,17 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!cardElement)
     {
       cardElement = elements.getElement("card");
     }
-    
-    e.preventDefault();
+
+    if(cardElement._invalid)
+    {
+      return null;
+    }
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -96,17 +101,21 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
           .then((result) => {
             if (result.error) {
                 console.log(result.error);
+                setPaymentState(PaymentState.Failed);
+                resolve();
+            } else {
+              setPaymentState(PaymentState.Completed);
+              resolve();
             }
-
-            setPaymentState(PaymentState.Completed);
-            resolve();
           })
           .catch((error) => {
             console.log("Error during payment process: " + error);
+            setPaymentState(PaymentState.Failed);
             reject(error);
           });
       });
     } catch (error) {
+      setPaymentState(PaymentState.Failed);
       console.log("Error during payment process: " + error);
     }
  };
@@ -228,7 +237,7 @@ const CheckoutForm = ({clientSecret, customerId, paymentIntentId}) => {
             </h3>
             <button
                 className="relative button inline-flex px-8 py-2 lg:px-16 lg:py-3 rounded-full text-white font-bold lg:text-base text-sm  shadow-md " 
-                onClick={() => changePaymentState("init")}>
+                onClick={() => changePaymentState(PaymentState.Init)}>
                 {t("tryAgainButtonTitle")}
                 <span className="button-icon">
                   <svg
