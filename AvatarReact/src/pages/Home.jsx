@@ -62,7 +62,7 @@ function Home() {
                     : null
                 }`}
                 onClick={() => setVideoLang("pl")}>
-                PI
+                Pl
               </button>
               <button
                 onClick={() => setVideoLang("en")}
@@ -72,12 +72,11 @@ function Home() {
                 En
               </button>
               <button
-                className="px-3 text-lg  transition-colors border-2 border-transparent rounded-full">
-                De
-              </button>
-              <button
-                className="px-3 text-lg  transition-colors border-2 border-transparent rounded-full">
-                Es
+                onClick={() => setVideoLang("cn")}
+                className={`px-3 text-lg  transition-colors border-2 border-transparent rounded-full ${
+                  videoLang === "cn" ? "border-green-500 text-green-500" : null
+                }`}>
+                Cn
               </button>
             </div>
           </div>
