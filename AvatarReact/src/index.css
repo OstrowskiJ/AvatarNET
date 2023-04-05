@@ -2491,6 +2491,16 @@ ul.table-list span svg {
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .eu-flag {
+    width: 255px;
+    transform: scale(1) !important;
+    margin-left: auto !important;;
+    margin-right: auto !important;;
+  }
+}
+
+
 .eu-flag {
   width: 255px;
   transform: scale(1) !important;
