@@ -2530,3 +2530,8 @@ ul.table-list span svg {
 .contact-form-success img {
   margin-bottom: 64px;
 }
+
+.funding-bar {
+  margin-left: auto;
+  margin-right: auto;
+}
