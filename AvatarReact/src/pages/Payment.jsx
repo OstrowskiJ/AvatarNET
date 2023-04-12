@@ -3,20 +3,16 @@ import AvatarLogo from "../assets/img/avatar-logo.svg";
 import StripeLogo from "../assets/img/stripeLogo.png";
 
 import { IcArRight, IcPlan } from "../components/Icons/Icons";
-import { useNavigate } from "react-router-dom";
 import CheckoutForm from "../components/CheckoutForm/CheckoutForm";
-import { useLocation } from "react-router-dom";
-import { useStripe } from "@stripe/react-stripe-js";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 
 const Payment = ({clientSecret, customerId, paymentIntentId}) => {
   const location = useLocation();
-  const { subtotal, salesTax, totalDue } = location.state;
-
-  console.log(location.state);
-  const { productState } = location.state;
   const navigate = useNavigate();
+
+  const { subtotal, salesTax, totalDue } = location.state;
 
   return (
     <div className="payment mt-24 pb-20 flex">
@@ -27,8 +23,8 @@ const Payment = ({clientSecret, customerId, paymentIntentId}) => {
               <IcArRight
                 w={"24px"}
                 h={"24px"}
-                cl={"rotate-180 absolute -left-7"}
-                onClick={() => navigate(-1)}
+                cl={"rotate-180 absolute -left-7 cursor-pointer"}
+                handleClick={() => navigate(-1)}
               />
               <img src={AvatarLogo} alt="AVATAR" width="122" className="pb-1" />
             </div>

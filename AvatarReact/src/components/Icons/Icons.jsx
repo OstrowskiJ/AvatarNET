@@ -225,21 +225,22 @@ export const IcImp = () => {
   );
 };
 
-export const IcArRight = ({ w = 17, h = 16, cl = "" }) => {
+export const IcArRight = ({ w, h, cl, handleClick}) => {
   return (
-    <svg
-      width={w}
-      height={h}
-      className={cl} 
-      viewBox="0 0 17 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M6.71436 3.33337L11.3204 8.00004L6.71436 12.6667"
-        stroke="black"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+      <svg
+        onClick={handleClick}
+        width={w}
+        height={h}
+        className={cl} 
+        viewBox="0 0 17 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M6.71436 3.33337L11.3204 8.00004L6.71436 12.6667"
+          stroke="black"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
   );
 };
