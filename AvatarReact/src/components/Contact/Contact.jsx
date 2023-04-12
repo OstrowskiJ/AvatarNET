@@ -8,6 +8,7 @@ import errorLogo from "../../assets/img/alert-triangle.png";
 import React, { useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import GreenTick from "../../assets/img/green-tick-icon.svg";
+import RedCross from "../../assets/img/red-cross-icon.svg";
 
 export const Contact = () => {
   const { t } = useTranslation();
@@ -44,7 +45,7 @@ export const Contact = () => {
       
       if (!response.ok) {
         const errorResponse = await response.json();
-        const errorMessage = `Something went wrong, field ${errorResponse.errors[0].field} - ${errorResponse.errors[0].message}` || "Something went wrong.";
+        const errorMessage = `Incorrect ${errorResponse.errors[0].field} entered` || "Something went wrong.";
         throw new Error(errorMessage);
       }
       
@@ -196,12 +197,13 @@ export const Contact = () => {
         }
         { contactFormState === ContactFormState.Failed &&
         <>
-          <img src={GreenTick} alt="success" width="160" className="pb-1" />
+          <img src={RedCross} alt="failed" width="160" className="pb-1" />
           <h2 className="contact-form-info-title text-3xl text-center lg:text-4xl">
             {t("failedContactForm")}
-            <br/>
-            { validationError }
           </h2>
+          <h3 className="contact-form-info-subtitle">
+            { validationError }
+          </h3>
           <button onClick={() => resetForm()} className="whitespace-pre	relative button inline-flex px-8 py-2 lg:px-16 lg:py-3 rounded-full text-white font-bold lg:text-base text-sm  shadow-md">
             {t("backButtonContactForm")}
           </button>

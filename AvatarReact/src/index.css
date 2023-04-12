@@ -2520,6 +2520,11 @@ ul.table-list span svg {
   margin-bottom: 32px;
 }
 
+.contact-form-info-subtitle {
+  color: #697386;
+  margin-bottom: 32px;
+}
+
 .contact-form-success button {
   margin-top: 32px;
 }
