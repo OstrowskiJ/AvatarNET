@@ -169,5 +169,6 @@
 
   "loadingContactForm": "Sending form...",
   "successContactForm": "Your form has been submitted!",
-  "backButtonContactForm": "Go back"
+  "backButtonContactForm": "Go back",
+  "failedContactForm": "Something went wrong"
 }

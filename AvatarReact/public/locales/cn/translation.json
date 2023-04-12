@@ -168,5 +168,6 @@
 
   "loadingContactForm": "need translation",
   "successContactForm": "need translation",
-  "backButtonContactForm": "need translation"
+  "backButtonContactForm": "need translation",
+  "failedContactForm": "need translation"
 }

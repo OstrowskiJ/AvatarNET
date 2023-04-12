@@ -173,5 +173,6 @@
 
   "loadingContactForm": "Wysyłam formularz...",
   "successContactForm": "Twój formularz został wysłany!",
-  "backButtonContactForm": "Wróć"
+  "backButtonContactForm": "Wróć",
+  "failedContactForm": "Coś poszło nie tak"
 }

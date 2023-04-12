@@ -13,7 +13,7 @@ export const Contact = () => {
   const { t } = useTranslation();
   const [contactFormState, setContactFormState] = useState(ContactFormState.Init);
   const [contactFormClassName, setcontactFormClassName] = useState("contact-form");
-  
+  const [validationError, setValidationError] = useState("");
 
   const {
     register,
@@ -26,11 +26,12 @@ export const Contact = () => {
   });
 
   const submitForm = async (data) => {
-    try {
-      setContactFormState(ContactFormState.Loading);
-      setcontactFormClassName("contact-form-loading");
+    setValidationError("");
+    setContactFormState(ContactFormState.Loading);
+    setcontactFormClassName("contact-form-loading");
 
-      await fetch(
+    try {
+      const response = await fetch(
         "https://formspree.io/f/xnqybzvg",
         {
           method: "POST",        
@@ -38,16 +39,24 @@ export const Contact = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data)
-        }).then(() => { 
-          setContactFormState(ContactFormState.Success);
-          setcontactFormClassName("contact-form-success");
-        });
+        }
+      );
+      
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        const errorMessage = `Something went wrong, field ${errorResponse.errors[0].field} - ${errorResponse.errors[0].message}` || "Something went wrong.";
+        throw new Error(errorMessage);
+      }
+      
+      setContactFormState(ContactFormState.Success);
+      setcontactFormClassName("contact-form-success");
     } catch (error) {
       if (error.response && error.response.data.message) {
-        console.log(error.response.data.message);
+        setValidationError(error.response.data.message);
       } else {
-        console.log(error.message);
+        setValidationError(error.message);
       }
+      setContactFormState(ContactFormState.Failed);
     }
   };
 
@@ -179,6 +188,19 @@ export const Contact = () => {
           <img src={GreenTick} alt="success" width="160" className="pb-1" />
           <h2 className="contact-form-info-title text-3xl text-center lg:text-4xl">
             {t("successContactForm")}
+          </h2>
+          <button onClick={() => resetForm()} className="whitespace-pre	relative button inline-flex px-8 py-2 lg:px-16 lg:py-3 rounded-full text-white font-bold lg:text-base text-sm  shadow-md">
+            {t("backButtonContactForm")}
+          </button>
+        </>
+        }
+        { contactFormState === ContactFormState.Failed &&
+        <>
+          <img src={GreenTick} alt="success" width="160" className="pb-1" />
+          <h2 className="contact-form-info-title text-3xl text-center lg:text-4xl">
+            {t("failedContactForm")}
+            <br/>
+            { validationError }
           </h2>
           <button onClick={() => resetForm()} className="whitespace-pre	relative button inline-flex px-8 py-2 lg:px-16 lg:py-3 rounded-full text-white font-bold lg:text-base text-sm  shadow-md">
             {t("backButtonContactForm")}

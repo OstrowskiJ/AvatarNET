@@ -1,7 +1,8 @@
 enum ContactFormState{
     Init,
     Loading,
-    Success
+    Success,
+    Failed
 }
 
 export default ContactFormState;
