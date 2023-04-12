@@ -8,7 +8,7 @@ import errorLogo from "../../assets/img/alert-triangle.png";
 import React, { useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import GreenTick from "../../assets/img/green-tick-icon.svg";
-import RedCross from "../../assets/img/red-cross-icon.svg";
+import YellowSign from "../../assets/img/yellow-sign-icon.svg";
 
 export const Contact = () => {
   const { t } = useTranslation();
@@ -197,7 +197,7 @@ export const Contact = () => {
         }
         { contactFormState === ContactFormState.Failed &&
         <>
-          <img src={RedCross} alt="failed" width="160" className="pb-1" />
+          <img src={YellowSign} alt="failed" width="160" className="pb-1" />
           <h2 className="contact-form-info-title text-3xl text-center lg:text-4xl">
             {t("failedContactForm")}
           </h2>

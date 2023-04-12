@@ -27,7 +27,7 @@ function Home() {
   return (
     <>
        
-      <div>
+      <div className="container flex items-center justify-between gap-10">
         {lang === "pl" ? 
           <img className="eu-flag" src={EuLogoPl}></img> :
           <img className="eu-flag" src={EuLogoEn}></img> }
