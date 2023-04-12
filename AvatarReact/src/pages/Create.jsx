@@ -99,19 +99,25 @@ export const Create = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+      
+      const atBottom = (scrollHeight - scrollTop) - 30 <= clientHeight;
+
       const offsetTop = document.getElementById('header').getBoundingClientRect().height + 
                         document.getElementById('carousel-menu').getBoundingClientRect().height;
+
       const sections = Object.keys(sectionTops.current);
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
-        if (scrollTop + offsetTop >= sectionTops.current[section]) {
+        if (atBottom) {
+          setActiveSection("payment");
+        } else if (scrollTop + offsetTop >= sectionTops.current[section]) {
           setActiveSection(section);
           break;
         } else if (scrollTop + offsetTop < sectionTops.current["plan"]) {
           setActiveSection("plan");
           break;
-        }
+        } 
       }
     };
 
