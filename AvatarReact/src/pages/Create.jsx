@@ -19,8 +19,6 @@ import paymentIcon from "../assets/img/pay_met_icon.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import errorLogo from "../assets/img/alert-triangle.png";
 import axios from "axios";
-import EuLogoEn from "../assets/img/eu_en.png";
-import EuLogoPl from "../assets/img/eu_pl.png";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 export const navbarRootMargin = "-260px 0px 0px 0px";

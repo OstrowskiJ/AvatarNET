@@ -13,9 +13,8 @@ import { useState } from "react";
 import { Contact } from "../components/Contact/Contact";
 import { Plans } from "../components/Plans/Plans";
 import { Link } from "react-router-dom";
-import EuLogoEn from "../assets/img/eu_en.png";
-import EuLogoPl from "../assets/img/eu_pl.png";
-import EuFunding from "../assets/img/EUFunding.png";
+import EuLogoEn from "../assets/img/eu_en.svg";
+import EuLogoPl from "../assets/img/eu_pl.svg";
 
 
 function Home() {
@@ -26,9 +25,12 @@ function Home() {
   const [videoLang, setVideoLang] = useState(null);
 
   return (
-    <>          
+    <>
+       
       <div>
-        <img className="funding-bar" src={EuFunding}></img>
+        {lang === "pl" ? 
+          <img className="eu-flag" src={EuLogoPl}></img> :
+          <img className="eu-flag" src={EuLogoEn}></img> }
       </div>
       <section className="relative overflow-hidden  py-5vh my-b xl:py-10vh 2xl:py-15vh">
         <div className="container relative xl:max-w-screen-xl">
@@ -52,9 +54,6 @@ function Home() {
                 {t("sectionHeroTitle")}
               </h2>
               <p>{t("sectionHeroSub")}</p>
-              {lang === "pl" ? 
-              <img className="eu-flag" src={EuLogoPl}></img> :
-              <img className="eu-flag" src={EuLogoEn}></img> }
             </div>
           </div>
           <div className="absolute right-4 top-16 md:right-8 xl:right-0">
