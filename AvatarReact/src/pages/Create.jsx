@@ -21,25 +21,6 @@ import errorLogo from "../assets/img/alert-triangle.png";
 import axios from "axios";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT;
-export const navbarRootMargin = "-260px 0px 0px 0px";
-let modelsPlanVoiceBackgroundObserver;
-let paymentObserver
-let yourTextObserver;
-
-const smallItemOptions = {
-  rootMargin: navbarRootMargin,
-  threshold: 0.9,
-};
-
-const mediumItemOptions = {
-  rootMargin: navbarRootMargin,
-  threshold: 0.7,
-};
-
-const largeItemOptions = {
-  rootMargin: navbarRootMargin,
-  threshold: 0.5,
-};
 
 const initialState = {
   plan: null,
@@ -102,6 +83,7 @@ export const Create = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [dataForm, dispatch] = useReducer(reducer, initialState);
   const [error, setError] = useState(false);
+  const [activeSection, setActiveSection] = useState('plan');
 
   const { t } = useTranslation();
   const { i18n } = useTranslation();
@@ -113,66 +95,48 @@ export const Create = () => {
   const textRef = useRef(null);
   const voiceRef = useRef(null);
   const paymentRef = useRef(null);
+  const sectionTops = useRef({});
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const offsetTop = document.getElementById('header').getBoundingClientRect().height + 
+                        document.getElementById('carousel-menu').getBoundingClientRect().height;
+      const sections = Object.keys(sectionTops.current);
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (scrollTop + offsetTop >= sectionTops.current[section]) {
+          setActiveSection(section);
+          break;
+        } else if (scrollTop + offsetTop < sectionTops.current["plan"]) {
+          setActiveSection("plan");
+          break;
+        }
+      }
+    };
+
+    const handleResize = () => {
+      const sections = document.querySelectorAll('section');
+      const tops = {};
+      sections.forEach(section => {
+        tops[section.id] = section.getBoundingClientRect().top + window.pageYOffset;
+      });
+      sectionTops.current = tops;
+    };
+
+    handleResize();
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleModel = (cat) => {
     setModelCat(cat);
   };
-  const [active, setActive] = useState(" ");
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (
-      planRef.current &&
-      modelsRef.current &&
-      backgroundRef.current &&
-      textRef.current &&
-      voiceRef.current &&
-      paymentRef.current
-    ) {
-      modelsPlanVoiceBackgroundObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          setActiveStateForNavigationItem(entry, active, setActive);
-        });
-      }, smallItemOptions);
-
-      paymentObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          setActiveStateForNavigationItem(entry, active, setActive);
-        });
-      }, mediumItemOptions);
-
-      const modelsObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          setActiveStateForNavigationItem(entry, active, setActive);
-        });
-      }, { rootMargin: navbarRootMargin, threshold: 0.6 });
-
-      yourTextObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          setActiveStateForNavigationItem(entry, active, setActive);
-        });
-      }, largeItemOptions);
-
-      modelsPlanVoiceBackgroundObserver.observe(planRef.current);
-      modelsPlanVoiceBackgroundObserver.observe(backgroundRef.current);
-      modelsPlanVoiceBackgroundObserver.observe(voiceRef.current);
-
-      paymentObserver.observe(paymentRef.current);
-      
-      modelsObserver.observe(modelsRef.current);
-
-      yourTextObserver.observe(textRef.current);
-    }
-    return () => { 
-      modelsPlanVoiceBackgroundObserver.disconnect();
-      paymentObserver.disconnect();
-      yourTextObserver.disconnect();
-    }
-  }, [planRef, modelsRef, backgroundRef, textRef, voiceRef, paymentRef]);
 
   const onAdd = (text, type) => {
     switch (type) {
@@ -292,7 +256,7 @@ export const Create = () => {
 
   return (
     <>
-      <div className=" bg-white top-24 !m-0 z-10 hidden md:flex md:sticky">
+      <div id="carousel-menu" className=" bg-white top-24 !m-0 z-10 hidden md:flex md:sticky">
         <div
           className="container grid max-w-8xl grid-cols-6 gap-1 py-2 mx-auto md:py-3 xl:py-5"
           x-data="{active:''}">
@@ -302,15 +266,15 @@ export const Create = () => {
             id="planItem"
             href="#plan"
             className={`active flex justify-between flex-col py-5 items-center space-y-2 text-center transition-colors border-2 border-transparent xl:px-5 rounded-xl ${
-              active === "planItem" ? "text-green-500 !border-green-500" : null
+              activeSection === "plan" ? "text-green-500 !border-green-500" : null
             }`}>
             <IcPlan
               c="m-auto pointer-events-none"
-              s={`${active === "planItem" ? "#00A67E" : "#414141"}`}
+              s={`${activeSection === "plan" ? "#00A67E" : "#414141"}`}
             />
             <span
               className={`inline-block text-xs font-medium md:text-base pointer-events-none ${
-                active === "planItem" ? "text-green-500" : "text-gray-500"
+                activeSection === "plan" ? "text-green-500" : "text-gray-500"
               }`}>
               {t("sectionPlan")}
             </span>
@@ -321,17 +285,17 @@ export const Create = () => {
             id="modelsItem"
             href="#models"
             className={`flex justify-between flex-col py-5 items-center space-y-2 text-center transition-colors border-2 border-transparent xl:px-5 rounded-xl ${
-              active === "modelsItem"
+              activeSection === "models"
                 ? "text-green-500 !border-green-500"
                 : null
             }`}>
             <IcModel
               c="m-auto  pointer-events-none"
-              f={`${active === "modelsItem" ? "#00A67E" : "#414141"}`}
+              f={`${activeSection === "models" ? "#00A67E" : "#414141"}`}
             />
             <span
               className={`inline-block text-xs font-medium md:text-base pointer-events-none ${
-                active === "modelsItem" ? "text-green-500" : "text-gray-500"
+                activeSection === "models" ? "text-green-500" : "text-gray-500"
               }`}>
               {t("sectionModels")}
             </span>
@@ -342,15 +306,15 @@ export const Create = () => {
             id="textItem"
             href="#text"
             className={`flex justify-between flex-col py-5 items-center space-y-2 text-center transition-colors border-2 border-transparent xl:px-5 rounded-xl ${
-              active === "textItem" ? "text-green-500 !border-green-500" : null
+              activeSection === "text" ? "text-green-500 !border-green-500" : null
             }`}>
             <IcText
               c="m-auto  pointer-events-none"
-              f={`${active === "textItem" ? "#00A67E" : "#414141"}`}
+              f={`${activeSection === "text" ? "#00A67E" : "#414141"}`}
             />
             <span
               className={`inline-block text-xs font-medium md:text-base pointer-events-none ${
-                active === "textItem" ? "text-green-500" : "text-gray-500"
+                activeSection === "text" ? "text-green-500" : "text-gray-500"
               }`}>
               {t("sectionYorText")}
             </span>
@@ -361,15 +325,15 @@ export const Create = () => {
             id="voiceItem"
             href="#voice"
             className={`flex justify-between flex-col py-5 items-center space-y-2 text-center transition-colors border-2 border-transparent xl:px-5 rounded-xl ${
-              active === "voiceItem" ? "text-green-500 !border-green-500" : null
+              activeSection === "voice" ? "text-green-500 !border-green-500" : null
             }`}>
             <IcVoice
               c="m-auto  pointer-events-none"
-              f={`${active === "voiceItem" ? "#00A67E" : "#414141"}`}
+              f={`${activeSection === "voice" ? "#00A67E" : "#414141"}`}
             />
             <span
               className={`inline-block text-xs font-medium md:text-base pointer-events-none ${
-                active === "voiceItem" ? "text-green-500" : "text-gray-500"
+                activeSection === "voice" ? "text-green-500" : "text-gray-500"
               }`}>
               {t("sectionOrderVoice")}
             </span>
@@ -380,17 +344,17 @@ export const Create = () => {
             id="backgroundItem"
             href="#background"
             className={`flex justify-between flex-col py-5 items-center space-y-2 text-center transition-colors border-2 border-transparent xl:px-5 rounded-xl ${
-              active === "backgroundItem"
+              activeSection === "background"
                 ? "text-green-500 !border-green-500"
                 : null
             }`}>
             <IcBg
               c="m-auto  pointer-events-none"
-              s={`${active === "backgroundItem" ? "#00A67E" : "#414141"}`}
+              s={`${activeSection === "background" ? "#00A67E" : "#414141"}`}
             />
             <span
               className={`inline-block text-xs font-medium md:text-base pointer-events-none ${
-                active === "backgroundItem" ? "text-green-500" : "text-gray-500"
+                activeSection === "background" ? "text-green-500" : "text-gray-500"
               }`}>
               {t("optionBackground")}
             </span>
@@ -401,29 +365,24 @@ export const Create = () => {
             id="paymentItem"
             href="#payment"
             className={`flex justify-between flex-col py-5 items-center space-y-2 text-center transition-colors border-2 border-transparent xl:px-5 rounded-xl ${
-              active === "paymentItem"
+              activeSection === "payment"
                 ? "text-green-500 !border-green-500"
                 : null
             }`}>
             <IcPayment
               c="m-auto  pointer-events-none"
-              s={`${active === "paymentItem" ? "#00A67E" : "#414141"}`}
+              s={`${activeSection === "payment" ? "#00A67E" : "#414141"}`}
             />
             <span
               className={`inline-block text-xs font-medium md:text-base pointer-events-none ${
-                active === "paymentItem" ? "text-green-500" : "text-gray-500"
+                activeSection === "payment" ? "text-green-500" : "text-gray-500"
               }`}>
               {t("sectionPayment")}
             </span>
           </AnchorLink>
         </div>
       </div>
-      <div className="container mt-20 relative ">
-        {lang === "pl" ?
-                <img className="eu-flag" style={{ marginLeft: 'auto', marginRight: '32px' }} src={EuLogoPl}></img> :
-                <img className="eu-flag" style={{ marginLeft: 'auto', marginRight: '32px' }} src={EuLogoEn}></img> }
-      </div>
-      <section className="mt-20" id="test">
+      <section className="mt-20">
         <h2 className="text-3xl xl:text-5xl font-semibold text-center">
           {t("sectionCreatorTitle")}
         </h2>

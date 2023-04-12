@@ -12,7 +12,7 @@ export const Header = () => {
   return (
     <>
       <section id="top"></section>
-      <header className=" px-3 py-2 shadow-sm lg:gap-[5vw] bg-white/80 sticky top-0 z-50 backdrop-blur">
+      <header id="header" className=" px-3 py-2 shadow-sm lg:gap-[5vw] bg-white/80 sticky top-0 z-50 backdrop-blur">
         <div className="container flex items-center justify-between gap-10">  
           <AnchorLink offset="100" href="#top">
             <Link to="/#top">
