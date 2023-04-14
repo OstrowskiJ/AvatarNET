@@ -13,8 +13,8 @@ import { useState } from "react";
 import { Contact } from "../components/Contact/Contact";
 import { Plans } from "../components/Plans/Plans";
 import { Link } from "react-router-dom";
-import EuLogoEn from "../assets/img/eu_en.svg";
-import EuLogoPl from "../assets/img/eu_pl.svg";
+import EuLogoEn from "../assets/img/eu_pl.jpg";
+import EuLogoPl from "../assets/img/eu_pl.jpg";
 
 
 function Home() {
