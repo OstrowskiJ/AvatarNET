@@ -450,7 +450,7 @@ function Home() {
             Celem projektu jest pozyskanie wiedzy eksperckiej w zakresie wprowadzania produktów - branża - techniki multimedialne na rynek Chiny i Singapur, skutkujące opracowaniem strategii ekspansji, a następnie jej realizacja w ramach etapu zagranicznego.<br/>
             W wyniku realizacji projektu nastąpi rozpoczęcie sprzedaży eksportowej produktów oferowanych przez przedsiębiorstwo Avatar Video sp. z o. o. na rynku docelowym.<br/>
             Całkowita wartość projektu: 360 000 PLN<br/>
-            Dofinansowanie projektu z UE: 60 000 + 60 000 PLN
+            Dofinansowanie projektu z UE: 120 000 + 120 000 PLN
           </p>
           </div>
         </div>
