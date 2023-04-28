@@ -31,10 +31,10 @@ function Home() {
       <img className="eu-flag" src={EuLogoPl}></img> :
       <img className="eu-flag" src={EuLogoEn}></img> }
     </div>
-      <section className="relative overflow-hidden  py-5vh my-b xl:py-10vh 2xl:py-15vh">
-        <div className="container relative xl:max-w-screen-xl">
+      <section className="relative overflow-hidden sm:py-0vh my-b xl:py-10vh 2xl:py-10vh">
+         <div className="container relative xl:max-w-screen-xl">
           <div className="flex-row-reverse xl:flex xl:items-center sectionOne-img">
-            <div className="py-5vh lg:py-0" x-show="video === 'pl'">
+            <div className="py-0vh md:py-10vh lg:py-0vh" x-show="video === 'pl'">
               <img
                 src={AvatarGirl}
                 alt="AvatarGirl"
@@ -442,7 +442,7 @@ function Home() {
       <Contact />
       <section>
         <div className="container xl:max-w-screen-xl">
-          <div className="py-5vh xl:py-10vh">
+          <div className="py-5vh xl:py-5vh">
           <span className="text-sm text-neutral-500">
             Projekt współfinansowany jest z Europejskiego Funduszu Rozwoju Regionalnego w ramach III Osi priorytetowej - Wsparcie innowacji w przedsiębiorstwach; Działanie: 3.3. Wsparcie promocji oraz internacjonalizacji innowacyjnych przedsiębiorstw, Programu Operacyjnego Inteligentny Rozwój 2014-2020.
             Nr umowy: POIR-03.03.01-00-0001/17-00 Polskie Mosty Technologiczne.<br/>
