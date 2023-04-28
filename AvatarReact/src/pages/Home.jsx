@@ -25,13 +25,12 @@ function Home() {
   const [videoLang, setVideoLang] = useState(null);
 
   return (
-    <>
-       
-      <div className="container flex items-center justify-between gap-10">
-        {lang === "pl" ? 
-          <img className="eu-flag" src={EuLogoPl}></img> :
-          <img className="eu-flag" src={EuLogoEn}></img> }
-      </div>
+    <>      
+    <div className="container flex items-center justify-between gap-10">
+    {lang === "pl" ? 
+      <img className="eu-flag" src={EuLogoPl}></img> :
+      <img className="eu-flag" src={EuLogoEn}></img> }
+    </div>
       <section className="relative overflow-hidden  py-5vh my-b xl:py-10vh 2xl:py-15vh">
         <div className="container relative xl:max-w-screen-xl">
           <div className="flex-row-reverse xl:flex xl:items-center sectionOne-img">
@@ -444,14 +443,14 @@ function Home() {
       <section>
         <div className="container xl:max-w-screen-xl">
           <div className="py-5vh xl:py-10vh">
-          <p>
+          <span className="text-sm text-neutral-500">
             Projekt współfinansowany jest z Europejskiego Funduszu Rozwoju Regionalnego w ramach III Osi priorytetowej - Wsparcie innowacji w przedsiębiorstwach; Działanie: 3.3. Wsparcie promocji oraz internacjonalizacji innowacyjnych przedsiębiorstw, Programu Operacyjnego Inteligentny Rozwój 2014-2020.
             Nr umowy: POIR-03.03.01-00-0001/17-00 Polskie Mosty Technologiczne.<br/>
             Celem projektu jest pozyskanie wiedzy eksperckiej w zakresie wprowadzania produktów - branża - techniki multimedialne na rynek Chiny i Singapur, skutkujące opracowaniem strategii ekspansji, a następnie jej realizacja w ramach etapu zagranicznego.<br/>
             W wyniku realizacji projektu nastąpi rozpoczęcie sprzedaży eksportowej produktów oferowanych przez przedsiębiorstwo Avatar Video sp. z o. o. na rynku docelowym.<br/>
             Całkowita wartość projektu: 360 000 PLN<br/>
             Dofinansowanie projektu z UE: 120 000 + 120 000 PLN
-          </p>
+          </span>
           </div>
         </div>
       </section>
