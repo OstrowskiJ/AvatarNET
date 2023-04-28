@@ -3,6 +3,7 @@ import Payment from "../pages/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js/pure";
 import { useLocation } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 
 const stripePromise = loadStripe("pk_test_51Mh9k3H5RSVwHAKh7BH6FN73hmx0dCQGGwRP0RlciOEOVcjohgL8FZ5pzs2LTLHFtGdcZZYcf8nCGWQSh5gb1SrJ00beq8b5iH");
 
@@ -41,10 +42,18 @@ const PaymentWrapper = () => {
 
   return (
     <div>
-      {clientSecret && (
+      {clientSecret ? (
         <Elements options={options} stripe={stripePromise}>
           <Payment clientSecret={ clientSecret } customerId = {customerId} paymentIntentId = {paymentIntentId}/>
         </Elements>
+      ) : (
+        <div className="payment mt-64 pb-64 flex justify-center">
+            <BeatLoader
+              color="#D1D5DB"
+              margin={15}
+              size={20}
+            />
+        </div>
       )}
     </div>
   );

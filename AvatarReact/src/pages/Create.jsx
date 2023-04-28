@@ -1,5 +1,5 @@
 import React, { useReducer, useRef } from "react";
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 import {
   IcBg,
   IcImp,
@@ -13,14 +13,21 @@ import { Models } from "../components/Models/Models";
 import { Text } from "../components/Text/Text";
 import { Dropdown } from "../components/Dropdown/Dropdown";
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import paymentIcon from "../assets/img/pay_met_icon.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import errorLogo from "../assets/img/alert-triangle.png";
 import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export const API_URL = process.env.REACT_APP_API_ENDPOINT;
+
+const override = {
+  marginLeft: "10px",
+  position: "absolute",
+  display: "inline-block"
+};
 
 const initialState = {
   plan: null,
@@ -83,6 +90,7 @@ export const Create = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [dataForm, dispatch] = useReducer(reducer, initialState);
   const [error, setError] = useState(false);
+  const [paymentProceed, setPaymentProceed] = useState("");
   const [activeSection, setActiveSection] = useState('plan');
 
   const { t } = useTranslation();
@@ -212,6 +220,7 @@ export const Create = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const priceSelect = () => {
       onAdd("Basic", "plan");
       onAdd(0, "price");
@@ -230,6 +239,7 @@ export const Create = () => {
     if (errorState.length) {
       setError(true);
     } else {
+      setPaymentProceed(true);
       setError(false);
 
       console.log("errorState :", dataForm);
@@ -244,6 +254,7 @@ export const Create = () => {
         salesTax: salesTaxPrice,
         totalDue: totalPrice
       }).then((product) => {
+        setPaymentProceed(false);
         navigate("/payment", { 
           state: {
             productState: product.data,
@@ -254,6 +265,7 @@ export const Create = () => {
         });
       })
       .catch((error) => {
+        setPaymentProceed(false);
         // setError(error)
       })
 
@@ -937,6 +949,14 @@ export const Create = () => {
                   handlePayment();
                 }}>
                 {t("sectionOrderCheckout")}
+                { 
+                paymentProceed &&
+                <BeatLoader
+                  cssOverride={override}
+                  color="#D1D5DB"
+                  size={7}
+                />
+                }
               </button>
             </div>
           </div>

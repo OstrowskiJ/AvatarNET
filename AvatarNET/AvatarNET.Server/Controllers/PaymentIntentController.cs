@@ -1,5 +1,4 @@
 ﻿using AvatarNET.Application.Commands;
-using AvatarNET.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import AvatarLogo from "../assets/img/avatar-logo.svg";
 import StripeLogo from "../assets/img/stripeLogo.png";
 
@@ -19,12 +19,11 @@ const Payment = ({clientSecret, customerId, paymentIntentId}) => {
       <div className="payment-wrapper  flex-1">
         <div className="payment-info max-w-md m-auto">
           <div className="payment-info-header">
-            <div className="flex align-middle items-center relative">
+            <div onClick={() => navigate(-1)} className="flex align-middle items-center relative cursor-pointer">
               <IcArRight
                 w={"24px"}
                 h={"24px"}
-                cl={"rotate-180 absolute -left-7 cursor-pointer"}
-                handleClick={() => navigate(-1)}
+                cl={"rotate-180 absolute -left-7"}
               />
               <img src={AvatarLogo} alt="AVATAR" width="122" className="pb-1" />
             </div>
@@ -103,7 +102,11 @@ const Payment = ({clientSecret, customerId, paymentIntentId}) => {
         <div className="payment-details"></div>
       </div>
       <div className="flex-1 flex flex-col justify-center">  
-        <CheckoutForm clientSecret = { clientSecret } customerId = { customerId } paymentIntentId = { paymentIntentId }/>
+        <CheckoutForm
+          clientSecret={clientSecret}
+          customerId={customerId}
+          paymentIntentId={paymentIntentId}
+        />
       </div>
     </div>
   );
