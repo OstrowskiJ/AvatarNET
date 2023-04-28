@@ -2,6 +2,8 @@ import React from "react";
 import CastingImg from "../../assets/img/castingstudio-logo.svg";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import AnchorLink from "react-anchor-link-smooth-scroll";
+
 export default function Footer() {
   const { t } = useTranslation();
   return (
@@ -15,24 +17,26 @@ export default function Footer() {
                 {t("footerContactTitle")}
               </h2>
               <p> {t("footerContactText")}.</p>
-              <Link
-                to="#"
-                className="flex items-center space-x-1 text-xl font-bold text-green-500 hover:underline"
-              >
-                <span>{t("footerContactTitle")}</span>
-                <svg
-                  className="w-5 stroke-[3]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <AnchorLink offset="100" href="#contact">
+                <Link
+                  to="/#contact"
+                  className="flex items-center space-x-1 text-xl font-bold text-green-500 hover:underline"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
+                  <span>{t("footerContactTitle")}</span>
+                  <svg
+                    className="w-5 stroke-[3]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </AnchorLink>
             </div>
             <div className="space-y-4">
               <h2 className="text-xl text-black lg:text-2xl">

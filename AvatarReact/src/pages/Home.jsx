@@ -414,7 +414,7 @@ function Home() {
                 {t("sectionAboutText")}
               </p>
               <p className="text-2xl text-gray-500 xl:text-3xl">
-                {t("sectionAboutLink")} <a href="https://jolly-beach-0ec849003.1.azurestaticapps.net/">castingstudio.com</a>
+                {t("sectionAboutLink")} <a href="https://www.casting.studio/">castingstudio.com</a>
               </p>
             </div>
           </div>
@@ -439,7 +439,9 @@ function Home() {
         </div>
       </section>
       <Plans />
-      <Contact />
+      <section id="contact">
+        <Contact />
+      </section>
       <section>
         <div className="container xl:max-w-screen-xl">
           <div className="py-5vh xl:py-5vh">
