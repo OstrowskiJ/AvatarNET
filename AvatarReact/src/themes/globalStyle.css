@@ -272,6 +272,9 @@ input[type="radio"].custom-radio:checked:hover {
   margin-top: 24px;
 }
 .btnDiv button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   cursor: pointer;
   padding: 12px 17px;

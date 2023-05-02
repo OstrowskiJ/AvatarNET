@@ -25,7 +25,6 @@ export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 
 const override = {
   marginLeft: "10px",
-  position: "absolute",
   display: "inline-block"
 };
 
@@ -950,10 +949,9 @@ export const Create = () => {
                 }}>
                 {t("sectionOrderCheckout")}
                 { 
-                paymentProceed &&
                 <BeatLoader
                   cssOverride={override}
-                  color="#D1D5DB"
+                  color="#FFFFFF"
                   size={7}
                 />
                 }
