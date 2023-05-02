@@ -948,7 +948,8 @@ export const Create = () => {
                   handlePayment();
                 }}>
                 {t("sectionOrderCheckout")}
-                { 
+                {
+                paymentProceed && 
                 <BeatLoader
                   cssOverride={override}
                   color="#FFFFFF"
